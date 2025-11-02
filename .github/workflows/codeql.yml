@@ -55,9 +55,12 @@ jobs:
 
       - name: Verify Application is Running
         run: |
-          sleep 5
+          sleep 20
           docker ps | grep test-container
           curl -f "http://localhost:8080/readfile?file=hello.txt"
+
+      - name: Show Docker Logs
+        run: docker logs test-container
 
       - name: Cleanup Docker Containers
         if: always()
